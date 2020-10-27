@@ -7,27 +7,21 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <ncurses.h>
+#include <strings.h>
 
-unsigned int i;//Throwaway iterator
-
-unsigned int _strlen(char* s){//I'm not gonna include strings just for this one function
-	i=0;
-	while(s[(++i)]!='\0');
-	return i;
-}
-
-unsigned char main(unsigned int argc, char *argv[]){
+int main(int argc, char *argv[]){
 	unsigned int ms=200000;//Microseconds
 	if(getenv("RSSRMS")&&atoi(getenv("RSSRMS")))
 		ms=atoi(getenv("RSSRMS"));//Override with environment variable if set
+	
 	int lm=25000;//Length multiplier (adds the length of the string*lm to ms)
 	if(getenv("RSSRLM")&&atoi(getenv("RSSRLM")))
 		lm=atoi(getenv("RSSRLM"));
-	char* filen="/dev/stdin";//File to read from
-	//1909 is the length of letters of the longest word according to wikipedia
-	unsigned short mwl=1909;//mwl for max word length
-	char ch;//Throwaway character
+	
+	char filen[]="/dev/stdin"; //File to read from
+	unsigned short mwl=1909; //max word length
 
+	char ch;
 	if(argc){
 		while(--argc){
 			if(argv[argc][0]=='-'){
@@ -81,5 +75,5 @@ OPTIONS:\n\
 	}
 	endwin();
 
-	return 0;
+	return EXIT_SUCCESS;
 }
