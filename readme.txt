@@ -17,7 +17,6 @@ UNINSTALLATION:
 Uninstall with "./install.sh uninstall"
 
 RECOMMENDATIONS:
-You read this file.
 You bind rssr to some key with a program such as sxhkd.
 
 CONFIGURATION:
